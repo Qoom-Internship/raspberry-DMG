@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DMG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="main-container" id="mainContainer">
+        <!-- 메인 화면 -->
+        <div class="memorial-section">
+            <div class="photo-container">
+                <img id="memorialPhoto" src="" alt="고인의 사진" />
+                <div class="photo-placeholder" id="photoPlaceholder">
+                    <i class="icon-user"></i>
+                </div>
+            </div>
+            
+            <div class="memorial-info">
+                <div class="edit-icon" onclick="goToEdit()">
+                    <i class="icon-edit"></i>
+                </div>
+                
+                <h1 class="name" id="memorialName">이름을 입력해주세요</h1>
+                <div class="dates" id="memorialDates">생년월일 ~ 사망일</div>
+                <div class="subtitle" id="memorialSubtitle">Beloved Mother<br>Forever in Our Hearts</div>
+                <div class="quote" id="memorialQuote">"Resting, not gone."</div>
+                
+                <div class="scan-area">
+                    <div class="scan-icon">
+                        <i class="icon-user-outline"></i>
+                    </div>
+                    <p>Please align your face with the guide line.</p>
+
+                    <!-- 실시간 카메라 스트림 -->
+                    <div class="camera-wrapper">
+                        <!-- 감지 상태 표시 -->
+                        <div class="detection-status" id="detectionStatus">
+                            얼굴을 찾고 있습니다...
+                        </div>
+                        
+                        <!-- 진행 상황 표시 -->
+                        <div class="progress-indicator" id="progressIndicator">
+                            <span id="progressText">잠시 머물러 주세요...</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span id="countdown">3.0s</span>
+                        </div>
+                        
+                        <img id="cameraFeed" src="/video_feed" class="camera-feed" alt="웹캠 스트림" />
+                    </div>
+
+                    <!-- 인식 메시지 -->
+                    <div id="recognizedMessage">인식 완료! 동영상을 시작합니다...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 비디오 재생 화면 -->
+    <div class="video-container" id="videoContainer" style="display: none;">
+        <div class="video-wrapper" style="position: relative;">
+            <!-- 수정 아이콘 버튼 -->
+            <label for="videoUpload" class="video-edit-icon" style="position: absolute; top: 10px; right: 10px; z-index: 10; cursor: pointer;">
+                <i class="icon-edit"></i>
+            </label>
+            <input type="file" id="videoUpload" accept="video/*" style="display: none;" />
+
+            <!-- 실제 비디오 플레이어 -->
+            <video id="memorialVideo" controls autoplay style="width: 100%; height: auto;">
+                <source src="" type="video/mp4" />
+                동영상을 지원하지 않는 브라우저입니다.
+            </video>
+
+            <!-- fallback -->
+            <div class="video-fallback" id="videoFallback" style="display: none;">
+                <img id="animatedPhoto" src="" alt="추모 사진" />
+                <div class="video-message">
+                    <h2>Hello my sweetie pie!</h2>
+                    <p>사랑하는 가족들에게 보내는 마지막 인사입니다.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 비디오 제어 버튼 -->
+        <div class="video-controls">
+            <button class="control-btn" id="muteBtn">
+                <i class="icon-volume"></i>
+            </button>
+            <button class="control-btn" onclick="goToMain()">
+                <i class="icon-close"></i>
+            </button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

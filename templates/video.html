@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memorial Video DMG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="video-page-container">
+        <!-- 5초 카운트다운 오버레이 -->
+        <div class="countdown-overlay" id="countdownOverlay">
+            <div class="countdown-number" id="countdownNumber">3</div>
+            <div class="countdown-text">동영상이 곧 시작됩니다...</div>
+        </div>
+
+        <!-- 로딩 오버레이 -->
+        <div class="loading-overlay-video" id="loadingOverlay">
+            <div class="loading-spinner-video"></div>
+            <div class="loading-text-video">동영상을 준비하고 있습니다...</div>
+        </div>
+
+        <!-- 비디오 컨테이너 -->
+        <div class="video-wrapper-fullscreen" id="videoContainer">
+            <!-- 실제 비디오 플레이어 -->
+            <video id="memorialVideo" style="display: none;">
+                <source src="" type="video/mp4" />
+                동영상을 지원하지 않는 브라우저입니다.
+            </video>
+
+            <!-- 동영상이 없을 때 표시되는 fallback -->
+            <div class="video-fallback-fullscreen" id="videoFallback" style="display: none;">
+                <img id="animatedPhoto" src="" alt="추모 사진" />
+                <div class="video-message-fullscreen">
+                    <p id="fallbackMessage">사랑하는 가족들에게 보내는 마지막 인사입니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 비디오 컨트롤 -->
+        <div class="video-controls-overlay">
+            <button class="control-btn-overlay" id="muteBtn" onclick="toggleMute()" title="음소거">
+                🔊
+            </button>
+        </div>
+
+        <!-- 비디오 정보 표시 -->
+        <div class="video-info-overlay" id="videoInfo" style="display: none;">
+            <h3 id="videoInfoName">이름</h3>
+            <p id="videoInfoDates">생년월일 ~ 사망일</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='video.js') }}"></script>
+</body>
+</html>

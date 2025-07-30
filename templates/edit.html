@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>edit DMG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="edit-container">
+        <div class="edit-form">
+            <h1>고인 정보 입력</h1>
+            <form id="memorialForm" enctype="multipart/form-data">
+                <div class="form-section">
+                    <div class="photo-upload-section">
+                        <div class="photo-upload-container" id="photoUploadContainer">
+                            <img id="previewPhoto" src="" alt="미리보기" style="display: none;" />
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <i class="icon-image"></i>
+                                <p>사진을 업로드하세요</p>
+                            </div>
+                            <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+                        </div>
+                    </div>
+
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birthDate">Date of Birth (MM. DD. YYYY) *</label>
+                            <input type="text" id="birthDate" placeholder="01. 01. 1950" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deathDate">Date of Death (MM. DD. YYYY) *</label>
+                            <input type="text" id="deathDate" placeholder="12. 31. 2023" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="epitaph">Epitaph *</label>
+                            <textarea id="epitaph" rows="3" placeholder="추모글을 입력하세요" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastWords">Last Words *</label>
+                            <textarea id="lastWords" rows="3" placeholder="유언을 입력하세요" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="video-upload-section">
+                                <div class="video-upload-container" id="videoUploadContainer">
+                                    <video id="previewVideo" controls style="display: none;"></video>
+                                    <button type="button" id="deleteVideoBtn" style="display: none; margin-top: 5px;">동영상 삭제</button>
+                                    <div class="upload-placeholder" id="videoUploadPlaceholder">
+                                        <i class="icon-video"></i>
+                                        <p>Please upload a cherished video<br>of your loved one (optional)</p>
+                                        <button type="button" class="upload-btn" id="videoUploadBtn">Upload File</button>
+                                    </div>
+                                    <input type="file" id="videoInput" accept="video/*" style="display: none;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="goToMain()">취소</button>
+                            <button type="submit" class="save-btn">
+                                <i class="icon-check"></i>
+                                저장
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='edit.js') }}"></script>
+</body>
+</html>

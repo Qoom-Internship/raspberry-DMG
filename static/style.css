@@ -1,0 +1,1024 @@
+/* ========================================
+   색상 시스템 및 기본 변수
+======================================== */
+:root {
+    /* 메인 색상 */
+    --primary-bg: #F0E7D9;
+    --secondary-bg: #F9F3E8;
+    --accent-color: #72501B;
+    --accent-hover: #5a3d15;
+    
+    /* 텍스트 색상 */
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: #aaa;
+    --text-lighter: #ccc;
+    
+    /* 상태 색상 */
+    --success-color: #22BD11;
+    --warning-color: #ffaa00;
+    --danger-color: #DC2F2F;
+    
+    /* 기타 색상 */
+    --border-color: #ddd;
+    --border-light: #eee;
+    --white: #ffffff;
+    --black: #000000;
+    --overlay-dark: rgba(0, 0, 0, 0.8);
+    --overlay-light: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   기본 스타일 및 리셋
+======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* ========================================
+   아이콘 폰트
+======================================== */
+.icon-user::before { content: "👤"; }
+.icon-edit::before { content: "✏️"; }
+.icon-image::before { content: "🖼️"; }
+.icon-video::before { content: "🎥"; }
+.icon-check::before { content: "✓"; }
+.icon-volume::before { content: "🔊"; }
+.icon-close::before { content: "✕"; }
+
+/* ========================================
+   공통 컨테이너 스타일
+======================================== */
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: var(--primary-bg);
+}
+
+.video-page-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    overflow: hidden;
+}
+
+.edit-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.video-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--primary-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* ========================================
+   메모리얼 섹션 스타일
+======================================== */
+.memorial-section {
+    flex: 1;
+    display: flex;
+    padding: 40px;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-container {
+    width: 300px;
+    height: 400px;
+    background-color: var(--secondary-bg);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.photo-placeholder {
+    position: absolute;
+    z-index: 2;
+    font-size: 80px;
+    color: var(--text-lighter);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-bg);
+}
+
+.memorial-info {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.dates {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--overlay-light);
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* ========================================
+   편집 아이콘
+======================================== */
+.edit-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.edit-icon:hover {
+    transform: scale(1.1);
+    background-color: var(--accent-hover);
+}
+
+.video-edit-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--overlay-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--white);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.video-edit-icon:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   카메라 및 스캔 영역
+======================================== */
+.scan-area {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    border: 2px dashed var(--text-lighter);
+    position: relative;
+}
+
+.scan-icon {
+    font-size: 60px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.scan-area p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.camera-wrapper {
+    margin-top: 10px;
+    border: 3px solid var(--text-lighter);
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4/3;
+    position: relative;
+    transition: border-color 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.camera-wrapper.detecting {
+    border-color: var(--warning-color);
+    animation: pulse-border 2s infinite;
+}
+
+.camera-wrapper.recognized {
+    border-color: var(--success-color);
+    animation: success-glow 1s ease-in-out;
+}
+
+.camera-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================================
+   상태 표시 및 진행률
+======================================== */
+.detection-status {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--overlay-dark);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.detection-status.detecting {
+    background: rgba(255, 170, 0, 0.9);
+    color: var(--black);
+}
+
+.detection-status.recognized {
+    background: rgba(34, 189, 17, 0.9);
+    color: var(--white);
+}
+
+.progress-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 30px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-width: 300px;
+}
+
+.progress-indicator.active {
+    display: flex;
+    animation: slideUp 0.5s ease-out;
+}
+
+.progress-bar {
+    width: 150px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--danger-color) 0%, var(--warning-color) 50%, var(--success-color) 100%);
+    width: 0%;
+    transition: width 0.2s ease;
+    border-radius: 4px;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+#progressText {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#countdown {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--warning-color);
+    min-width: 45px;
+    text-align: center;
+}
+
+#recognizedMessage {
+    font-size: 0.5rem;
+    color: var(--success-color);
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+    font-weight: bold;
+}
+
+/* ========================================
+   비디오 관련 스타일
+======================================== */
+.video-wrapper {
+    width: 85%;
+    max-width: 900px;
+    background-color: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-wrapper-fullscreen {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.video-wrapper-fullscreen video {
+    height: 100vh;
+    width: auto;
+    max-width: 100vw;
+    object-fit: cover;
+    display: block;
+}
+
+.video-fallback {
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-fallback img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 30px;
+    animation: gentle-bounce 3s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.video-fallback-fullscreen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.video-fallback-fullscreen img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 50px;
+    animation: gentle-pulse 3s ease-in-out infinite;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 8px solid var(--white);
+}
+
+.video-message h2 {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.video-message p {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.video-message-fullscreen h2 {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.video-message-fullscreen p {
+    font-size: 1.6rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* ========================================
+   컨트롤 버튼
+======================================== */
+.video-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--overlay-dark);
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.video-controls-overlay {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 50;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.video-controls-overlay:hover {
+    opacity: 1;
+}
+
+.control-btn-overlay {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--overlay-dark);
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn-overlay:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   오버레이 및 모달
+======================================== */
+.countdown-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.countdown-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.countdown-number {
+    font-size: 8rem;
+    color: var(--white);
+    font-weight: bold;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    animation: countdownPulse 1s ease-in-out;
+}
+
+.countdown-text {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.loading-overlay-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay-video.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner-video {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 30px;
+}
+
+.loading-text-video {
+    color: var(--white);
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.video-info-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: var(--overlay-dark);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    z-index: 50;
+    opacity: 0.9;
+}
+
+.video-info-overlay h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.video-info-overlay p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================
+   편집 폼 스타일
+======================================== */
+.edit-form {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.edit-form h1 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.form-section {
+    display: flex;
+    gap: 40px;
+}
+
+.photo-upload-section {
+    flex: 0 0 250px;
+}
+
+.form-fields {
+    flex: 1;
+}
+
+.photo-upload-container,
+.video-upload-container {
+    width: 100%;
+    height: 300px;
+    border: 2px dashed var(--border-color);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-upload-container:hover,
+.video-upload-container:hover {
+    border-color: var(--accent-color);
+    background-color: var(--secondary-bg);
+}
+
+.photo-upload-container img,
+.video-upload-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-placeholder {
+    text-align: center;
+    color: var(--text-light);
+}
+
+.upload-placeholder i {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-placeholder p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.upload-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-light);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--secondary-bg);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background-color: var(--white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.video-upload-section {
+    margin-top: 10px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background-color: #f5f5f5;
+    color: var(--text-secondary);
+}
+
+.cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.save-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.save-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   애니메이션 키프레임
+======================================== */
+@keyframes pulse-border {
+    0%, 100% { border-color: var(--warning-color); }
+    50% { border-color: var(--danger-color); }
+}
+
+@keyframes success-glow {
+    0% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+    50% { box-shadow: 0 8px 35px rgba(34, 189, 17, 0.4); }
+    100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes recognizedPulse {
+    from { opacity: 0.8; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@keyframes countdownPulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   유틸리티 클래스
+======================================== */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ========================================
+   반응형 디자인
+======================================== */
+@media (max-width: 768px) {
+    /* 메모리얼 섹션 */
+    .memorial-section {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+    
+    /* 카메라 */
+    .camera-wrapper {
+        max-width: 300px;
+    }
+    
+    .progress-indicator {
+        min-width: 250px;
+        padding: 12px 20px;
+    }
+    
+    .progress-bar {
+        width: 120px;
+    }
+    
+    /* 편집 폼 */
+    .form-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .photo-upload-section {
+        flex: none;
+    }
+    
+    .photo-upload-container {
+        height: 200px;
+    }
+    
+    .edit-form {
+        padding: 20px;
+    }
+    
+    /* 비디오 */
+    .video-wrapper {
+        width: 95%;
+    }
+    
+    .countdown-number {
+        font-size: 6rem;
+    }
+    
+    .countdown-text {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
+    
+    .video-fallback-fullscreen img {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .video-message-fullscreen h2 {
+        font-size: 2.2rem;
+    }
+    
+    .video-message-fullscreen p {
+        font-size: 1.3rem;
+        padding: 0 20px;
+    }
+    
+    .video-controls-overlay {
+        top: 20px;
+        right: 20px;
+        gap: 10px;
+    }
+    
+    .control-btn-overlay {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+    
+    .video-info-overlay {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        padding: 12px 20px;
+    }
+}
